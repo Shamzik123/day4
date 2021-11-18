@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Таблица студентов</title>
+    </head>
+    <body>
+        <h1>Студенты</h1>
+        <br>
+        <div id="n1" >
+            <table border="1" cellpadding="5" cellspacing="3">
+                <tr>
+                    <th>Номер</th>
+                    <th>ФИО</th>
+                    <th>Группа</th>
+                    <th>Год рождения</th>
+                    <th>Сдал</th>
+                    </tr>
+                    <tr v-for="stud in student">
+                    <td>{{stud.id}}</td>
+                    <td v-bind:style="stud.fio.indexOf(search)>-1 && search.length >0 ? 'background-color:#b8b6ff' : 'background-color:#fff'">{{stud.fio}}</td>
+                    <td>{{stud.grupa}}</td>
+                    <td>{{stud.god}}</td>
+                    <td> <input type="checkbox" v-bind:checked="stud.sdal"> {{stud.sdal}}</td>
+                    <td ><a href="#" v-on:click="deleteStudent(stud.id)">Удалить</a></td>
+                    </tr>
+                    </table>
+                    <br>
+                   Ведите для поиска <input v-model="search">
+                   <br>
+                   ФИО:<input type="text" v-model ="fio">
+                   <br>
+                   ГРУППА:<input type="text" v-model ="grupa">
+                  <br>
+                   ГОД:<input type="number" v-model ="god">
+                  <br>
+                   Сдал<input type="checkbox" v-model="sdal">
+                  
+                  <button v-on:click="add">Добавить</button>
+        </div>
+        <br>
+        <div id="databinding">
+            <div v-bind:style="styleobj"v-on:mouseover="changebgcolor"v-on:mouseout="originalcolor"></div>
+            </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+        <script src="/js/main_4.js"></script>
+    </body>
+</html>
